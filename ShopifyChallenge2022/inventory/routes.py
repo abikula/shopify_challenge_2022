@@ -65,7 +65,6 @@ def view_inventory():
 def add_item():
     form = AddForm()
     if form.validate_on_submit():
-        print('yo')
         item_to_create = Item(name = form.name.data, description = form.description.data)
         db.session.add(item_to_create)
         db.session.commit()
