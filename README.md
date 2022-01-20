@@ -12,7 +12,7 @@ This web application is currently hosted on https://akula-shopifychallenge.herok
 The home page is merely a line of text  telling the user to click the 'View Inventory' link on the top navbar to see a list of the items in the inventory. 
 The 'View Inventory' page shows a list of all items in the inventory as well as a list of items that have been deleted in case undeletion is neccessary. Deleted items are shown with a deletion comment if it was given at the time of deletion. Users can add an item to the inventory, edit details of each item and delete items. Undeletion is only possible on items that have been deleted from the inventory. 
 
-# Improvements
+# Improvements for the future
 * Front end improvements will drastically improve the user experience for this app. 
 
 * Logic for incrementing stock if user adds an item already in inventory
