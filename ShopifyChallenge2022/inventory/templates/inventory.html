@@ -1,0 +1,76 @@
+{% extends 'base.html'%}
+{% block title%}
+    Inventory Page
+{% endblock %}
+
+{% block content%}
+
+
+
+<div class="row" style="margin-top:20px; margin-left:20px">
+    <div class="col-8">
+        <h2>Items In Inventory</h2>
+        <p>Click on one of the items to edit</p>
+        <a class="btn btn-outline btn-info" href="{{url_for('add_item')}}">Add Item</a>
+
+        <br>
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <!-- Your Columns HERE -->
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Stock</th>
+                    <th scope = "col">Description</th>
+                    <th scope = "col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Your rows inside the table HERE: -->
+                    {% for item in items%}
+                    {% include 'includes/items_modals.html'%}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.stock}}</td>
+                        <td>{{item.description}}</td>
+                        <td>
+                            <button class="btn btn-outline btn-info" data-toggle="modal" data-target = "#Modal-MoreInfo-{{ item.id }}">Edit</button>
+                            <button class="btn btn-outline btn-danger" data-toggle ="modal" data-target ="#Modal-DeleteConfirm-{{ item.id }}">Delete</button>
+        
+                        </td>
+                    </tr>
+                    {% endfor%}
+        
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <h2>Deleted Items</h2>
+        <p>Click on one of the items to undelete and put back in inventory</p>
+        <br>
+        <div class="row">
+            {% for d_item in d_items %}
+            {% include 'includes/deleted_items_modals.html'%}
+                <div class="col-md-6">
+                    <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">{{d_item.name}}</h5>
+                            <button type="button" class="btn btn-outline-success" style="margin-bottom: 5px"
+                                    data-toggle="modal" data-target="#Modal-UndeleteConfirm-{{ d_item.id }}">
+                                Undelete this item
+                            </button>
+                            <p class="card-text"><strong>
+                                Deletion comment: {{d_item.delete_comment}}
+                            </strong></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
